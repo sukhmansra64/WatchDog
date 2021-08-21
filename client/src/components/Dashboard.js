@@ -4,11 +4,11 @@ import {useHistory} from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
 import style from '../styles/mapStyle';
 import {Button, Form} from "react-bootstrap";
-
+//@todo find a way to render all objects in http response
 const Dashboard = () =>{
     const [form,setForm] = useState({});
     const [isForm, setIsForm] = useState(false);
-    const [marker, setMarker] = useState([]);
+    const [marker, setMarker] = useState();
     const auth = localStorage.getItem('token');
     let history = useHistory();
     const options = {
@@ -23,6 +23,7 @@ const Dashboard = () =>{
             value: ''
         });
         setIsForm(true);
+        console.log(marker)
     }
     const formOnChange = (e) =>{
         setForm({
@@ -33,7 +34,8 @@ const Dashboard = () =>{
     const submitOnclick = (e) =>{
         e.preventDefault();
         setIsForm(false);
-        console.log(form.value);
+        setMarker([...marker,{lat: form.lat, lng: form.lng,text: form.value, token: localStorage.getItem('token')}]);
+        console.log(marker);
     }
 
     useEffect(()=>{
@@ -47,6 +49,14 @@ const Dashboard = () =>{
             }).catch((err)=>{
             console.error(err.response.data.msg)
             history.push('/login');
+        });
+        axios.get('/api/markers',{headers:{token: auth}})
+            .then((data)=>{
+                const response = data;
+                setMarker([response.data.markers]);
+                console.log(response.data.markers);
+            }).catch((err)=>{
+            console.error(err)
         });
     },[auth,history]);
 
@@ -79,6 +89,9 @@ const Dashboard = () =>{
                         </Button>
                     </Form>
                     </div>}
+                    {marker && marker.map((mark,key)=>
+                        <div key={key} className='bg-white' style={{height:40, width: 40}} lat={mark.lat} lng={mark.lng}>{mark.text}</div>
+                    )}
                 </GoogleMapReact>
             </div>
         </>

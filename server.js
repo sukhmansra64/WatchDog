@@ -12,6 +12,7 @@ app.use(express.json());
 //routes
 app.use('/api/users',require('./routes/api/users'));
 app.use('/api/auth',require('./routes/api/auth'));
+app.use('/api/markers',require('./routes/api/marker'));
 
 app.get('/',(req,res)=>{
     res.status(200).json({msg: "Server working"});
