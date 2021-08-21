@@ -8,7 +8,7 @@ const NavBar = () =>{
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Link to='/' style={{textDecoration: 'none'}}>
-                    <Navbar.Brand>WtchDg</Navbar.Brand>
+                    <Navbar.Brand><img src={require('./watch-dog-logo.png')} className="d-inline-block align-top"/></Navbar.Brand>
                 </Link>
                 <Nav className="me-auto">
                     <NavLink as={Link} to='/login'>Login</NavLink>
