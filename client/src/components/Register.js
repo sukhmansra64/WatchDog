@@ -3,14 +3,17 @@ import {Alert, Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
+import {useHistory} from 'react-router-dom';
 
-const Register = () =>{
+const Register = (props) =>{
     const [email,setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [alert, setAlert] = useState("");
     const [isAlert, setIsAlert] = useState(false);
     const [response,setResponse] = useState();
+    let history = useHistory();
+
 
 
     const postRequest = () =>{
@@ -18,7 +21,9 @@ const Register = () =>{
             .then((data)=>{
                 setResponse(data.data.token);
                 console.log(response);
+                history.push('/login');
             }).catch((err)=>{
+                console.error(err)
                 setAlert(err.response.data.errors[0].msg);
                 setIsAlert(true);
             });

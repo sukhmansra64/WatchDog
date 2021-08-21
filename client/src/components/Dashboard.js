@@ -1,12 +1,10 @@
-import {useHistory} from "react-router-dom";
 import {useEffect} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
-
-const Landing = () =>{
+const Dashboard = () =>{
     const auth = localStorage.getItem('token')
     let history = useHistory()
-
     useEffect(()=>{
         console.log(auth);
         if(!auth){
@@ -16,7 +14,6 @@ const Landing = () =>{
             .then((data)=>{
                 const response = data;
                 console.log(response);
-                history.push('/dashboard');
             }).catch((err)=>{
             console.error(err.response.data.msg)
             history.push('/login');
@@ -24,9 +21,9 @@ const Landing = () =>{
     },[auth,history])
     return(
         <>
-
+            <h1>Logged in</h1>
         </>
     )
-};
+}
 
-export default Landing;
+export default Dashboard

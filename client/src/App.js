@@ -3,6 +3,7 @@ import 'bootstrap';
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 import NavBar from "./components/NavBar";
 
 
@@ -20,6 +21,9 @@ function App() {
                   </Route>
                   <Route exact path='/register'>
                       <Register/>
+                  </Route>
+                  <Route exact path='/dashboard'>
+                      <Dashboard/>
                   </Route>
               </Switch>
           </BrowserRouter>
