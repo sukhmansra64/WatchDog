@@ -11,13 +11,11 @@ const Login = () =>{
     const [password, setPassword] = useState('');
     const [alert, setAlert] = useState("");
     const [isAlert, setIsAlert] = useState(false);
-    const [response,setResponse] = useState();
     let history = useHistory();
 
     const postRequest = () =>{
         axios.post('/api/auth',{email,password})
             .then((data)=>{
-                setResponse(data.data.token);
                 localStorage.setItem('token',data.data.token);
                 history.push('/dashboard');
             }).catch((err)=>{
