@@ -1,6 +1,6 @@
 import {Container, Nav, Navbar, NavLink} from "react-bootstrap";
 import {Link} from "react-router-dom";
-
+import logo from './watch-dog-logo.png';
 
 
 const NavBar = () =>{
@@ -8,7 +8,7 @@ const NavBar = () =>{
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Link to='/' style={{textDecoration: 'none'}}>
-                    <Navbar.Brand><img src={require('./watch-dog-logo.png')} className="d-inline-block align-top"/></Navbar.Brand>
+                    <Navbar.Brand><img src={logo} className="d-inline-block align-top" width={100} height={50}/></Navbar.Brand>
                 </Link>
                 <Nav className="me-auto">
                     <NavLink as={Link} to='/login'>Login</NavLink>
