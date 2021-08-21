@@ -1,0 +1,4 @@
+{
+  "mongoURI" : "mongodb+srv://pomlay:Pokes@vhcluster.ewehw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtSecret" : "Pokes"
+}
