@@ -83,7 +83,7 @@ const Dashboard = () =>{
             {isAlert &&<Alert variant='danger'>{alert}</Alert>}
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: "AIzaSyCbYVvMQ10-t31PWAWSkUTG07XPPw-SSV0" }}
+                    bootstrapURLKeys={{ key: process.env.googleApiKey }}
                     defaultCenter={{
                         lat:43.6548,
                         lng:-79.3883
