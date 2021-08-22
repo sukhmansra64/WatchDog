@@ -1,9 +1,22 @@
-import {Container, Nav, Navbar, NavLink} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Button, Container, Nav, Navbar, NavLink} from "react-bootstrap";
+import {Link, useHistory} from "react-router-dom";
 import logo from './watch-dog-logo.png';
 
 
+
 const NavBar = () =>{
+    let history = useHistory();
+    const token = localStorage.getItem('token');
+    const handleClick = () =>{
+        if(token){
+            localStorage.removeItem('token');
+            history.push('/login');
+        }else{
+            history.push('/login');
+        }
+
+    }
+
     return(
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -15,9 +28,10 @@ const NavBar = () =>{
                     <NavLink as={Link} to='/register'>Register</NavLink>
                     <NavLink as={Link} to='/'>Map</NavLink>
                 </Nav>
+                <Nav><Button onClick={handleClick} className='btn-light'>Sign Out</Button></Nav>
             </Container>
         </Navbar>
     )
-}
+};
 
 export default NavBar

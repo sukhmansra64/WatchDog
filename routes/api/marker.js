@@ -14,7 +14,7 @@ const Marker = require('../../models/Marker');
 
 router.get('/', auth, async (req,res)=>{
     try{
-        const markers = await Marker.find();
+        const markers = await Marker.find().populate('user',['email']);;
         res.status(200).json({markers});
     }catch(err){
         console.error(err);
